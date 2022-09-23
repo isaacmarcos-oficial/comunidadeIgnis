@@ -40,9 +40,8 @@ export default function Blog({ posts }: PostsProps) {
             <Flex align="center" justify="center">
               <Wrap align="center" justify="center" >                
               <Divider orientation='horizontal' display={{ base:"none", lg:"flex" }} />
-
                 {posts.map(post => (
-                  <WrapItem key={post.slug} py={{ base: "none", lg: "1rem" }} px={{ base:"none", lg:"0rem"}} gap="8" borderRadius="10" _hover={{ color: "#B78221" }} >
+                <WrapItem key={post.slug} py={{ base: "none", lg: "1rem" }} px={{ base: "none", lg: "0rem" }} gap="8" borderRadius="10" _hover={{ color: "#B78221"}} >
                   
                   <Flex as={Link} href={`/blog/${post.slug}`} direction={{ base: "column", lg: "row" }} w="100%" align="center">
                     <Flex w={{ base:"100%", lg:"35%"}} align="center" >
@@ -61,8 +60,8 @@ export default function Blog({ posts }: PostsProps) {
                     </Flex>                      
                   </Flex>
                 </WrapItem>
-                ))}
                 
+                ))}
               </Wrap>
             </Flex>
           </Flex>

@@ -1,58 +1,43 @@
-import { Flex, Grid, Image, GridItem, Heading, Text } from "@chakra-ui/react";
+import { Heading, Text, Image, Wrap, WrapItem, Link, Flex } from "@chakra-ui/react";
 
-export default function HomeBlog() {
-  return (
-    <Flex
-      px={["16px", "32px"]}
-      align="center"
-      justify="center"
-    >
-      <Flex
-      maxW="82.5rem" boxSize="100%" >
-        <Grid
-          w="100%"
-          h={{ base:'28.125rem', md:'50rem', lg:'12.5rem'}}
-          templateRows={['repeat(3, 1fr)', 'repeat(3, 1fr)', 'repeat(2, 1fr)']}
-          templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(3, 1fr)']}
-          gap={4}
-        >
-          <GridItem rowSpan={[1, 1, 1, 1, 2]} colSpan={[1, 1, 1, 1, 2]} bg='black' borderRadius={10}>
-            <Flex w="100%" h={["85%", "85%", "88%", "90%", "80%"]} borderRadius={10} bgColor="orange">
-              <Image w="100%" src="https://bit.ly/AtoConsagracao"  borderRadius={10} objectFit='cover'
-              />
-            </Flex>
-            <Heading fontSize={["xs", "sm"]} px={4} textAlign={["center", 'center', 'center', 'center', 'left']} color="#AFB6C2">
-              Texto do “Ato de Consagração ao Imaculado Coração de Maria” 
-            </Heading>
+type Post = {
+  slug: string;
+  title: string;
+  banner: {
+    url: string;
+  };
+}
 
-          </GridItem>
-          <GridItem colSpan={1} bg='black' borderRadius={10}>
-            <Image
-              w="100%" h={["85%", "85%", "88%", "90%", "80%"]}
-              borderRadius={10}
-              src="/Blog/Banner2.jpg"
-              objectFit='cover'
-            >
-            </Image>
-            <Heading fontSize={["xs", "sm"]} px={4} textAlign={["center", 'center', 'center', 'center', 'left']} color="#AFB6C2">
-              Texto do “Ato de Consagração ao Imaculado Coração de Maria” 
-            </Heading>
-          </GridItem>
-          
-          <GridItem colSpan={1} bg='black' borderRadius={10}>
-            <Image
-              w="100%" h={["85%", "85%", "88%",  "90%", "80%"]}
-              borderRadius={10}
-              src="/Blog/Banner3.jpg"
-              objectFit='cover'
-            >
-            </Image>
-            <Heading fontSize={["xs", "sm"]} px={4} textAlign={["center", 'center', 'center', 'center', 'left']} color="#AFB6C2">
-              Texto do “Ato de Consagração ao Imaculado Coração de Maria” 
-            </Heading>
-          </GridItem>
-        </Grid>
+interface PostsProps {
+  posts: Post[];
+}
+
+export default function Blog({ posts }: PostsProps) {
+  return(
+    <Flex direction="column" align="center" justify="center">      
+      <Flex my="2rem" direction="column" mt={{ base:"5rem", lg:"8rem"}} w={{ base:"90%", lg:"82.5rem"}}>
+
+        <Flex my={{ base:"2rem", lg:"3rem"}} borderRadius="10" direction="column" align="center" justify="center">
+          <Flex align="center" >
+            <Wrap align="center"  spacing="4rem" >
+              {posts.map(post => (
+                <WrapItem key={post.slug} >
+                  <Flex as={Link} href={`/blog/${post.slug}`} _hover={{ color: "#B78221" }} target="_blank" mb="-3rem" direction="column" align="center" justify="start">
+                    <Image objectFit="cover" w={{ base: "500px", lg: "255px" }} h={{ base:"200px", lg:"255px"}} src={post.banner.url} borderRadius="10" mb="2" />
+                    <Flex>
+                      <Heading as={Text} w="200px" fontSize="16px" align="center" >
+                        {post.title}
+                        Título
+                      </Heading>
+                    </Flex>
+                  </Flex>
+                </WrapItem>
+              ))}
+            </Wrap>
+          </Flex>
+        </Flex>
       </Flex>
+      
     </Flex>
   )
 }

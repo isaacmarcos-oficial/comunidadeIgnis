@@ -39,42 +39,42 @@ export default function Community() {
           </Heading>
 
           <Flex w="80%" align="center" justify="center" >
-            <Wrap gap="10rem" align="center" justify="center" spacing="3rem" >
+            <Wrap gap="10rem" align="center" justify="center" spacing="5rem" >
               <WrapItem>
                 <Flex direction="column" align="center" justify="center">
-                  <Image h="10rem" src="https://bit.ly/CELITO_GARCIA" borderRadius="10" mb="2" />
+                  <Image h="10rem" src="https://i0.wp.com/comunidadeignis.com.br/wp-content/uploads/2021/02/Robson-de-Maria.jpg?w=539&ssl=1" borderRadius="10" mb="2" />
                   <Flex direction="column" align="center" justify="center">
                     <Heading>
-                      Celito Garcia
+                      Robson de Maria
                     </Heading>
                     <Text align="center">
-                      Fundador
+                      Pregador Missionário
                     </Text>
                   </Flex>
                 </Flex>
               </WrapItem>
               <WrapItem>
                 <Flex direction="column" align="center" justify="center">
-                  <Image h="10rem" src="https://bit.ly/CELITO_GARCIA" borderRadius="10" mb="2" />
+                  <Image h="10rem" src="https://i0.wp.com/comunidadeignis.com.br/wp-content/uploads/2021/02/Paulo-Junior.jpg?fit=200%2C200&ssl=1" borderRadius="10" mb="2" />
                   <Flex direction="column" align="center" justify="center">
                     <Heading>
-                      Celito Garcia
+                      Paulo Júnior
                     </Heading>
                     <Text align="center">
-                      Fundador
+                      Pregador Missionário
                     </Text>
                   </Flex>
                 </Flex>
               </WrapItem>
               <WrapItem>
                 <Flex direction="column" align="center" justify="center">
-                  <Image h="10rem" src="https://bit.ly/CELITO_GARCIA" borderRadius="10" mb="2" />
+                  <Image h="10rem" src="https://i0.wp.com/comunidadeignis.com.br/wp-content/uploads/2021/02/Denilson-Moretti.jpg?w=958&ssl=1" borderRadius="10" mb="2" />
                   <Flex direction="column" align="center" justify="center">
                     <Heading>
-                      Celito Garcia
+                      Denilson Moretti
                     </Heading>
                     <Text align="center">
-                      Fundador
+                      Pregador Missionário
                     </Text>
                   </Flex>
                 </Flex>
@@ -223,7 +223,7 @@ export default function Community() {
               <WrapItem>
                 <Flex direction="column" align="center" justify="center">
                   <Image h="10rem" src="https://bit.ly/CELITO_GARCIA" borderRadius="10" mb="2" />
-                  <Flex direction="column" align="center" justify="center">
+                  <Flex direction="column" al ign="center" justify="center">
                     <Heading>
                       Celito Garcia
                     </Heading>

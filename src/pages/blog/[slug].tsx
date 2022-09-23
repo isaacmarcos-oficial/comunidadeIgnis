@@ -29,33 +29,26 @@ export default function Post({post}: PostsProps) {
       <Header />
       <title>Comunidade Ignis | {post.title} </title>
 
-      <Flex direction="column" mt="4rem" >
+      <Flex direction="column" mt="4.375rem" >
         <Flex mb="3rem" direction="column" >
           <Flex>
             <Wrap >
               <WrapItem >
                 <Flex direction="column" align="center" justify="center">
-                  <Flex w="100vw" h={{ base:"20rem", lg:"31.75rem"}} justify="center" align="center" mb="45px" bgColor="black">
-                    {/* <Flex w="1320px" h="31.75rem" position="absolute" bgGradient="linear(to bottom,rgba(255,255,255,0) 0,rgba(128,128,128,0) 40%,#000 100%)" />
-                    <Flex w="1320px" h="31.4rem" position="absolute" bgGradient="linear(to left,rgba(255,255,255,0) 0,rgba(128,128,128,0) 40%,#000 100%)" />
-                    <Flex w="1320px" h="31.4rem" position="absolute" bgGradient="linear(to right,rgba(255,255,255,0) 0,rgba(128,128,128,0) 40%,#000 100%)" /> */}
-                    
-                    <Flex className={styles.container} maxW="1320px" w="100%" h={{ base:"20rem", lg:"31.75rem"}} objectFit="cover" bgImage={post.banner.url} />
-
-                    {/* <Image className={styles.container} w="1320px" h={{ base:"20rem", lg:"31.75rem"}} objectFit="cover" src={post.banner.url} /> */}
-
-                    <Flex position="absolute" direction="column" margin="40px" align={{ base:"center", lg:"none" }} >
-                      <Heading
-                        color="#fff" fontFamily="Gentium" fontSize={{ base: "1.25rem", lg: "1.625rem" }}>
-                        {post.title}
-                      </Heading>
-                      <Text mt="0.75rem" fontStyle="italic" color="#adadad" fontWeight="600" fontSize={{ base:"0.875rem", lg:"1rem" }}>
-                        {post.author} | {post.releaseDate}
-                      </Text>
-                    </Flex>
+                  <Flex className={styles.container} direction="column" w="100vw" h={{ base: "20rem", lg: "28.125rem" }} justify="center" align="center" bgColor="#000" zIndex="hide">
+                    <Image bgImage={post.banner.url} w="100%" h="100%" bgSize="cover" opacity="0.1"/>
                   </Flex>
-                  <Flex direction="column" w={{ base: "80%", lg: "780px" }}  >
-                    <Text fontSize={{ base: "1rem", lg: "1.125rem" }} lineHeight={{ base: "1.75rem", lg: "2rem" }} className={styles.postContent}
+                  <Flex direction="column" w={{ base: "90%", lg: "780px" }}  >
+                      <Flex direction="column" align="center" justify="center">
+                        <Heading
+                          color="#000" mt="2.25rem" fontFamily="Gentium" fontSize={{ base: "24px", lg: "36px" }} textAlign="center">
+                          {post.title}
+                        </Heading>
+                        <Text mt="8px" fontStyle="italic" color="#adadad" fontWeight="600" fontSize="14px" mb="6" >
+                        {post.author} | {post.releaseDate}
+                        </Text >
+                      </Flex>
+                    <Text className={styles.postContent} fontSize={{ base: "1rem", lg: "1.125rem" }} lineHeight={{ base: "1.75rem", lg: "2rem" }}  letterSpacing="0.0063rem"
                     >
                       {ReactHtmlParser(post.content)}
                     </Text>
