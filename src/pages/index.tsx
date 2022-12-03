@@ -10,7 +10,32 @@ import { GetStaticProps } from "next";
 import { createClient } from "../services/prismic";
 import { RichText } from "prismic-dom"
 
-export default function Home() {
+type Post = {
+  slug: string;
+  title: string;
+  banner: {
+    url: string;
+  };
+  author: string;
+  excerpt: string;
+  updatedAt: string;
+}
+
+type Evangelii = {
+  slug: string;
+  title: string;
+  subtitle: string;
+  banner: {
+    url: string;
+  };
+}
+
+interface PostsProps {
+  posts: Post[];
+  evangeliis: Evangelii[]
+}
+
+export default function Home({ posts, evangeliis }: PostsProps) {
   return (
     <Flex display="column" align="center" justify="center">
       <title>Comunidade Ignis</title>
@@ -18,30 +43,56 @@ export default function Home() {
       <Header />
       <HomeHero />
       <Spirituality />
-      <HomeBlog posts={[]} />
-      <HomeBiblos />
+      <HomeBlog posts={posts} />
+      <HomeBiblos evangeliis={evangeliis}/>
       <Footer />
     </Flex>
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({ previewData }) => {
-  const client = createClient({ previewData })
+export const getStaticProps: GetStaticProps = async ({  }) => {
+  
+  const client = createClient({  }) 
 
-  const response = await client.getAllByType('post')
+  const postResponse = await client.getAllByType('post', {
+    limit: 4,
+    orderings: {
+      field: 'document.last_publication_date',
+      direction: 'asc'
+    },
+  })
 
-  const posts = response?.map((post: any) => {
+  const evangeliiResponse = await client.getAllByType('evangelii', {
+    limit: 1,
+    orderings: {
+      field: 'document.last_publication_date',
+      direction: 'asc'
+    },
+  })
+
+  const posts = postResponse?.map((post: any) => {
     return {
       slug: post.uid,
       banner: {
         url: post.data.banner.url,
       },
-      title: RichText.asText(post.data.title),      
+      title: RichText.asText(post.data.title),
+    } 
+  });
+
+  const evangeliis = evangeliiResponse?.map((evangelii: any) => {
+    return {
+      slug: evangelii.uid,
+      banner: {
+        url: evangelii.data.banner.url,
+      },
+      title: RichText.asText(evangelii.data.title),      
+      subtitle: RichText.asText(evangelii.data.subtitle),      
     }
   });
 
   return {
-    props: { posts }, // Will be passed to the page component as props
-    revalidate: 60 * 60, // 1 hour
+     props: { posts, evangeliis }, // Will be passed to the page component as props
+     revalidate: 60 * 60, // 1 hour
   }
 }

@@ -34,7 +34,6 @@ export default function Book({download}: DownloadsProps) {
             <Flex className={styles.postContent} direction="column" my="2rem" align="center" justify="center" >
               <Heading fontFamily="Gentium" color="#c39439" align="center" as={Text} fontSize={{ base: "1.875rem", lg: "2.625rem" }} >
                 {download.title}
-                {/* Via Sacra  */}
               </Heading>
               
               <Text fontStyle="italic" color="#adadad" fontWeight="600" fontSize={{ base: "0.875rem", lg: "1rem" }}>
@@ -42,19 +41,12 @@ export default function Book({download}: DownloadsProps) {
               </Text>
 
               <Text mt="1.25rem" fontSize={{ base: "1rem", lg: "1.15rem" }} lineHeight={{ base: "1.625rem", lg: "2rem" }} color="#E8E7E8" >
-                {/* {download.content} */}
                 {ReactHtmlParser(download.content)}
-
-                {/* A devoção da Via-Sacra consiste na oração que acompanhar o Nosso Senhor Jesus Cristo em sua paixão, desde o Tribunal de Pilatos até o Monte Calvário.
-                  <br/><br/>
-                Para uma devoção piedosa desta tradicional oração, a  Comunidade Católica Missionária Ignis apresenta a Via Sacra escrita por Dom Antônio de Castro Mayer.
-                  <br/><br/>
-                O download pode ser feito abaixo gratuitamente. Aproveite! */}
                 
               </Text>
 
-              <Link href={download.file.url} download target="_blank" >
-                <Button  mt="2rem" bgColor="#FFC632" _focus={{ boxShadow: "none" }} _hover={{ bgColor: "#bd8e00" }}>
+              <Link href={download.file.url} download="exemplo.pdf" target="_blank" >
+                <Button  mt="2rem" bgColor="#FFC632" _focus={{ boxShadow: "none" }} _hover={{ bgColor: "#bd8e00" }} >
                     Baixar E-Book
                 </Button>
               </Link>

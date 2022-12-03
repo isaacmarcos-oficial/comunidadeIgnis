@@ -1,10 +1,12 @@
-import { Heading, Text, Image, Wrap, WrapItem, Divider, Link, Flex } from "@chakra-ui/react";
+import { Heading, Text, Image, Wrap, WrapItem, Link, Flex, Box, Button, Icon } from "@chakra-ui/react";
 import { Footer } from "../../components/Footer";
 import Header from "../../components/Header";
 
+import { GoPerson, GoCalendar } from "react-icons/go"
 import { GetStaticProps } from "next";
 import { createClient } from "../../services/prismic";
 import { RichText,  } from "prismic-dom"
+import { Sidebar } from "../../components/Sidebar";
 
 type Post = {
   slug: string;
@@ -28,35 +30,56 @@ export default function Blog({ posts }: PostsProps) {
       
       <Header />
       
-      <Flex my="32px" direction="column" mt="128px" w={{ base:"90%", lg:"82.5rem"}}>
-        <Flex direction="column"  bgColor="#000" color="#FFC632" h={{ base:"10rem", lg:"18.75rem"}} w="100%" mb={{ base:"none", lg:"2rem"}} align="center" justify="center" borderRadius="10">
-          <Heading fontSize={{ base:"32px", lg:"48px" }}>
-            Blog
-          </Heading>
-        </Flex>
+      <Flex w={{ base:"90%", lg:"90%"}} maxW="1320px" direction={"column"} mt="8rem" >
 
-        <Flex my="3rem" direction={{ base:"column", lg:"row" }} >
-          <Flex w={{ base:"100%", lg: "75%"}}  borderRadius="10" direction="column" align="center" justify="center">
-            <Flex align="center" justify="center">
-              <Wrap align="center" justify="center" >                
-              <Divider orientation='horizontal' display={{ base:"none", lg:"flex" }} />
+        <Flex  w={{ lg:"100%"}} justify="space-between" gap="32px" >
+          <Flex maxW="59.375rem" w="100%" direction={{ lg:"row", base:"column"}} >
+            <Flex >
+              <Wrap spacing="24px" >
                 {posts.map(post => (
-                <WrapItem key={post.slug} py={{ base: "none", lg: "1rem" }} px={{ base: "none", lg: "0rem" }} gap="8" borderRadius="10" _hover={{ color: "#B78221"}} >
+                <WrapItem key={post.slug} _hover={{ color: "yellow.500" }} shadow="md"  >
                   
-                  <Flex as={Link} href={`/blog/${post.slug}`} direction={{ base: "column", lg: "row" }} w="100%" align="center">
-                    <Flex w={{ base:"100%", lg:"35%"}} align="center" >
-                      <Image w="100%" h={{ base:"15rem", lg: "12rem"}} objectFit="cover" src={post.banner.url} borderRadius="10" />
-                    </Flex>
-                    <Flex w={{ base:"100%", lg:"80%"}} borderRadius={{ base:"0.75rem", lg:"none"}} mt={{ base:"-10", lg:"0"}} ml={{ base:"none", lg:"30px"}} direction="column" bgColor={{ base:"#fff", lg:"gray.50"}} p={{ base:"5", lg:"0"}} >
-                      <Text color="#B78221" fontWeight="600" mb="0.25rem" fontSize="0.875rem" >
-                        {post.author} | {post.updatedAt}
+                  <Flex direction={{ base: "column", lg: "row" }} bgColor="white" style={{ textDecoration:"none" }} >
+                      
+                    <Box w={{ lg:"31.25rem", base:"100%" }} h={{ lg:"15.625rem", base:"12.5rem" }} overflow="hidden" as={Link} href={`/blog/${post.slug}`} >
+                      <Image w="100%" h="100%" objectFit="cover" src={post.banner.url} />
+                    </Box>
+                      
+                    <Flex w={{ lg:"-moz-mix-content", base:"100%" }} direction="column" bgColor="white" p="5" align={{ base:"center", lg:"initial" }}  >
+                      <Text mt={4} color="yellow.700" fontWeight="600" fontSize="13px" display={{ lg:"flex", base:"none" }} >
+                        <Icon as={GoPerson} mr="1" />  {post.author} | <Icon as={GoCalendar} ml="1" mr="1" /> {post.updatedAt}
                       </Text>
-                      <Heading as={Text} fontSize={{ base:"1.375rem", lg:"1.5rem"}} mb={{ base:"0.25rem", lg:"0.5rem"}} >
+                      <Heading as={Link} href={`/blog/${post.slug}`} style={{ textDecoration:"none" }} align={{ base:"center", lg:"left" }} fontSize={{ base:"18px", lg:"22px"}} letterSpacing="-0.025rem"  color="gray.700" _hover={{ color: "yellow.700" }} >
                         {post.title}
                       </Heading>
-                      <Text fontSize={{ base: "0.875rem", lg: "1rem" }} >
-                        {post.excerpt}
+
+                      <Box
+                        w="5rem" 
+                        border="0.0625rem solid"
+                        borderColor="yellow.700"
+                        mb="16px"
+                        mt="4px"
+                      />                          
+
+                      <Text
+                          fontSize={{ base: "14px", lg: "14px" }}
+                          color="gray.500"
+                          textAlign="justify"
+                          display="table-cell"
+                          textOverflow="ellipsis"
+                          overflow="hidden"
+                          maxHeight="8ch"
+                          
+                        >
+                        {post.excerpt}...
                         </Text>
+                        
+                        <Button as={Link} href={`/blog/${post.slug}`} position="inherit" w={{ lg:"9.375rem", base:"100%"}} h="1.6875rem" bgColor="yellow.700" color="white" mt="8px" borderRadius={{ lg:"100", base:"5" }} _hover={{ bgColor: "yellow.800" }} style={{ textDecoration:"none" }}  >
+                          <Text fontSize={{ lg:"80%", base:"60%" }} >
+                            Continue lendo →
+                          </Text>
+                        </Button>
+                        
                     </Flex>                      
                   </Flex>
                 </WrapItem>
@@ -66,14 +89,9 @@ export default function Blog({ posts }: PostsProps) {
             </Flex>
           </Flex>
 
-          <Flex direction="column" w={{ base:"100%", lg:"25%"}} px={{ base:"none", lg:"8"}} align="center" mt={{ base:"10", lg:"none"}} >
-            <Heading color="#B78221" fontSize="1rem" mb="0.5rem" >
-              APROFUNDE
-            </Heading>
-            <Image w="100%" h="200px" src="https://bit.ly/EFC_Ignis" objectFit="cover" />
-          </Flex>
+          <Sidebar />
+          
         </Flex>
-        
       </Flex>
       
       <Footer />
@@ -81,10 +99,17 @@ export default function Blog({ posts }: PostsProps) {
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({ previewData }) => {
-  const client = createClient({ previewData })
+export const getStaticProps: GetStaticProps = async ({  }) => {
+  
+  const client = createClient({  }) 
 
-  const response = await client.getAllByType('post')
+  const response = await client.getAllByType('post', {
+    pageSize: 2,
+    orderings: {
+      field: 'document.last_publication_date',
+      direction: 'asc'
+    },
+  }) 
 
   const posts = response?.map((post: any) => {
     return {
@@ -101,7 +126,7 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
          year: 'numeric',
       })
       
-    }
+    } 
   });
 
   return {

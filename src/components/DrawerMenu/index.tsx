@@ -45,7 +45,7 @@ export function DrawerMenu() {
               <AdressList title="Baluartes" adress="/baluartes" />
               <AdressList title="Downloads" adress="/downloads" />
               <AdressList title="Blog" adress="/blog" />
-              <AdressList title="Contato" adress="/" />
+              <AdressList title="Contato" adress="/contact" />
             </Flex>
 
             <Flex flexDirection="column" gap="4" mt="6">

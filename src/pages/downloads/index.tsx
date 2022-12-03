@@ -25,7 +25,7 @@ export default function Download({ downloads }: DownloadsProps) {
       <Header />
       
       <Flex my="2rem" direction="column" mt={{ base:"5rem", lg:"8rem"}} w={{ base:"90%", lg:"82.5rem"}}>
-        <Flex direction="column"  bgColor="#000" color="#FFC632" h={{ base:"10rem", lg:"18.75rem"}} w="100%" mb={{ base:"none", lg:"2rem"}} align="center" justify="center" borderRadius="10">
+        <Flex direction="column"  bgColor="gray.900" color="#FFC632" h={{ base:"10rem", lg:"18.75rem"}} w="100%" mb={{ base:"none", lg:"2rem"}} align="center" justify="center" borderRadius="10">
           <Heading fontSize={{ base:"32px", lg:"48px" }}>
             Downloads
           </Heading>
@@ -36,10 +36,10 @@ export default function Download({ downloads }: DownloadsProps) {
             <Wrap align="center"  spacing="4rem" >
               {downloads.map(download => (
                 <WrapItem key={download.slug} >
-                  <Flex as={Link} href={`/downloads/${download.slug}`} _hover={{ color: "#B78221" }} target="_blank" mb="-3rem" direction="column" align="center" justify="start">
-                    <Image objectFit="cover" w={{ base: "500px", lg: "255px" }} h={{ base:"200px", lg:"255px"}} src={download.banner.url} borderRadius="10" mb="2" />
+                  <Flex as={Link} href={`/downloads/${download.slug}`} _hover={{ color: "#B78221" }} style={{ textDecoration:"none" }} target="_blank" mb="-3rem" direction="column" align="center" justify="space-between"  >
+                    <Image objectFit="cover" w={{ base: "500px", md:"40vw", lg: "255px" }} h={{ base:"200px", lg:"255px"}} src={download.banner.url} borderRadius="10" mb="2" />
                     <Flex>
-                      <Heading as={Text} w="200px" fontSize="16px" align="center" >
+                      <Heading as={Text} w="100%" fontSize="16px" align="center" >
                         {download.title}
                       </Heading>
                     </Flex>
